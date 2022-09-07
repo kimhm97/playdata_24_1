@@ -1,0 +1,18 @@
+문제
+1.  각각의 사원번호에 대해 휴가 시작일과 휴가 종료일을 보여주되, 오전오후의 속성인
+ SMA_VC와 EMA_VC를 이용하여 1일 경우는 오전, 2일 경우는 오후로 출력하시오.
+
+ SELECT EMPNO_VC as "사번",
+STDATE_VC as "휴가시작일",
+DECODE( SMA_VC , 1, '오전' , '오후' ) as "오전오후",
+EDDATE_VC as "휴가종료일",
+DECODE( EMA_VC ,1,'오전',2,'오후') as "오전오후"
+FROM T_HOLHISTORY;
+
+문제
+2. 사원번호와 휴가신청 상태를 표시하되 상태( STATE_VC)의 현재상태 코드가 0일 경우 허가 , 10일 경우대기 , 20일 경우 불허가로 표시하시오.
+
+SELECT EMPNO_VC as "사번",
+STDATE_VC as "휴가시작일",
+DECODE( STATE_VC, 0, '허가', 10 , '대기' , 20,'불허가' ) as "상태"
+FROM T_HOLHISTORY;
