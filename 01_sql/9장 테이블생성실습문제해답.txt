@@ -1,0 +1,46 @@
+drop table subject;
+ create table subject
+ ( subno number(5) CONSTRAINT subject_no_pk primary key,
+   subname varchar2(20) constraint subject_name_nn NOT NULL,
+   term varchar2(1) CONSTRAINT subject_term_ck CHECK ( term in ( '1','2') ),
+   type varchar2(4) CONSTRAINT subject_type_ck CHECK( type in ('필수','선택') ));
+   
+    create table subject
+ ( subno number(5),
+   subname varchar2(20) CONSTRAINT subject_name_nn NOT NULL,
+   term varchar2(1), 
+   type varchar2(4),
+    CONSTRAINT subject_no_pk primary key(subno),
+    CONSTRAINT subject_term_ck CHECK ( term in ( '1','2') ),
+    CONSTRAINT subject_type_ck CHECK( type in ('필수','선택')) 
+   );
+
+  insert into subject ( subno , subname, term , type )
+  values ( 1, 'a','1','필수');
+    insert into subject ( subno , subname, term , type )
+  values ( 2, 'a','3','필수');
+   insert into subject ( subno , subname, term , type )
+  values ( 3, 'a','1','필');
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+   create table student
+  ( studno number(5) constraint student_studno_pk PRIMARY KEY,
+    stuname varchar2(10) );
+    
+  create table sugang
+  ( studno  number(5) CONSTRAINT sugang_studno_fk REFERENCES student(studno),
+    subno number(5) CONSTRAINT sugang_subno_fk REFERENCES subject(subno),
+    regdate date,
+    result number(3), 
+     CONSTRAINT sugang_result_pk PRIMARY KEY (studno, subno) );
+
+   create table sugang
+  ( studno  number(5) ,
+    subno number(5) ,
+    regdate date,
+    result number(3), 
+     CONSTRAINT sugang_result_pk PRIMARY KEY (studno, subno),
+     CONSTRAINT sugang_studno_fk FOREIGN KEY(studno) REFERENCES student(studno),
+     CONSTRAINT sugang_subno_fk FOREIGN KEY(subno) REFERENCES subject(subno)
+     );
