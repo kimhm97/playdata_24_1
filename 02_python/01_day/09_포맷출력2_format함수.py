@@ -27,3 +27,5 @@ print(mesg)
 
 mesg = "이름:{0}   나이:{1}   주소:{address}  ".format("홍길동", 20, address="서울")
 print(mesg)
+
+help('FORMATTING')
