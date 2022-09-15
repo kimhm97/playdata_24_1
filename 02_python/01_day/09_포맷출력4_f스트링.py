@@ -13,7 +13,7 @@
 
    3. format string
     ==>  f"" 형식
-    ==> 장점은 ""안에 변수사용 가능
+    ==> 장점은 ""안에 변수사용 가능, 연산 가능, 함수호출 가능
 '''
 name = "홍길동"
 age = 20
@@ -22,5 +22,9 @@ print(mesg)
 mesg = f"이름: {name}, 나이:{age}"
 print(mesg)
 
+# 연산
+name = "HongKilDong" # "문자열"==> str ==> str의 함수(print(dir(str))
+mesg = f"이름: {name.upper()}, 나이:{age+1}, 나이가 30보다 크냐? {age > 30} "
+print(mesg)
 
 
